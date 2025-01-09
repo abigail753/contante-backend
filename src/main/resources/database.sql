@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 05-11-2024 a las 15:57:31
+-- Tiempo de generación: 16-12-2024 a las 14:58:45
 -- Versión del servidor: 8.1.0
 -- Versión de PHP: 8.2.11
 
@@ -60,7 +60,8 @@ CREATE TABLE `asiento` (
 CREATE TABLE `balance` (
   `id` bigint NOT NULL,
   `titulo` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `descripcion` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL
+  `descripcion` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `id_tipobalance` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 -- --------------------------------------------------------
@@ -230,6 +231,17 @@ CREATE TABLE `tipoasiento` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tipobalance`
+--
+
+CREATE TABLE `tipobalance` (
+  `id` bigint NOT NULL,
+  `descripcion` varchar(255) COLLATE utf16_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipocuenta`
 --
 
@@ -362,6 +374,12 @@ ALTER TABLE `tipoasiento`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `tipobalance`
+--
+ALTER TABLE `tipobalance`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `tipocuenta`
 --
 ALTER TABLE `tipocuenta`
@@ -471,6 +489,12 @@ ALTER TABLE `tipoapunte`
 -- AUTO_INCREMENT de la tabla `tipoasiento`
 --
 ALTER TABLE `tipoasiento`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tipobalance`
+--
+ALTER TABLE `tipobalance`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
 --

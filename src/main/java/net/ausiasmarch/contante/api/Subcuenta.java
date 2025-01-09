@@ -39,6 +39,11 @@ public class Subcuenta {
                     HttpStatus.OK);
         }
 
+        @GetMapping("/xtipocuenta/{id}")
+        public ResponseEntity<Long> countTipocuentas(@PathVariable Long id) {
+           return new ResponseEntity<Long>(oSubCuentaService.countTipocuentas(id), HttpStatus.OK);
+        }
+
     @GetMapping("")
     public ResponseEntity<Page<SubcuentaEntity>> getPage(
             Pageable oPageable,

@@ -36,6 +36,7 @@ public class TipocuentaEntity {
 
     @OneToMany(mappedBy = "tipocuenta",fetch = FetchType.LAZY)
     private java.util.List<GrupotipocuentaEntity> grupotipocuentas;
+    
 
     public TipocuentaEntity() {
         this.cuentas = new java.util.ArrayList<>();

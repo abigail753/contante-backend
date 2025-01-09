@@ -143,4 +143,10 @@ public class GrupotipocuentaService implements ServiceInterface<GrupotipocuentaE
                 .get(oRandomService.getRandomInt(0, (int) (oGrupotipocuentaRepository.count() - 1)));
     }
 
+
+
+    public Long deleteByIds(Long id_balance, Long id_tipocuenta) {
+        return Long.valueOf( oGrupotipocuentaRepository.deleteByIds(id_balance, id_tipocuenta));
+    }
+
 }

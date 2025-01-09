@@ -47,7 +47,22 @@ public class Tipoasiento {
         return new ResponseEntity<Long>(oTipoAsientoService.count(), HttpStatus.OK);
     }
 
-     @DeleteMapping("/{id}")
+    @GetMapping("/xbalance/{id}")
+    public ResponseEntity<Page<TipoasientoEntity>> getByBalance(Pageable oPageable, @PathVariable Long id,
+            @RequestParam Optional<String> filter) {
+        return new ResponseEntity<Page<TipoasientoEntity>>(oTipoAsientoService.getPageByBalance(oPageable, id, filter),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/wherebalanceisnot/{id}")
+    public ResponseEntity<Page<TipoasientoEntity>> getTipoasientoSinRelacionar(Pageable oPageable,
+            @PathVariable Long id, @RequestParam Optional<String> filter) {
+        return new ResponseEntity<Page<TipoasientoEntity>>(
+                oTipoAsientoService.getTipoasientoSinRelacionar(id, oPageable, filter),
+                HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id) {
         return new ResponseEntity<Long>(oTipoAsientoService.delete(id), HttpStatus.OK);
     }
@@ -70,5 +85,17 @@ public class Tipoasiento {
     @DeleteMapping("/all")
     public ResponseEntity<Long> deleteAll() {
         return new ResponseEntity<Long>(oTipoAsientoService.deleteAll(), HttpStatus.OK);
+    }
+
+    // quitar relacion con parametros de tipoasiento y balance
+    @DeleteMapping("/quitarBalance")
+    public ResponseEntity<Long> deleteRelation(@RequestParam Long idTipoasiento, @RequestParam Long idBalance) {
+        return new ResponseEntity<Long>(oTipoAsientoService.deleteRelation(idTipoasiento, idBalance), HttpStatus.OK);
+    }
+
+    // agregar relacion con parametros de tipoasiento y balance
+    @PutMapping("/agregarBalance")
+    public ResponseEntity<Long> addRelation(@RequestParam Long idTipoasiento, @RequestParam Long idBalance) {
+        return new ResponseEntity<Long>(oTipoAsientoService.addRelation(idTipoasiento, idBalance), HttpStatus.OK);
     }
 }

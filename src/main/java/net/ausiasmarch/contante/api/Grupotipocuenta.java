@@ -74,6 +74,11 @@ public class Grupotipocuenta {
         public ResponseEntity<Long> deleteAll() {
             return new ResponseEntity<Long>(oGrupoTipoCuentaService.deleteAll(), HttpStatus.OK);
         }
+
+        @DeleteMapping("/delete/{idb}/{idtc}")
+        public ResponseEntity<Long> deleteByIds(@PathVariable Long idb, @PathVariable Long idtc) {
+            return new ResponseEntity<Long>(oGrupoTipoCuentaService.deleteByIds(idb, idtc), HttpStatus.OK);
+        }
     
     }
     

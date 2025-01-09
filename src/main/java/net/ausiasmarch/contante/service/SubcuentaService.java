@@ -56,6 +56,9 @@ public class SubcuentaService implements ServiceInterface<SubcuentaEntity> {
         }
     }
 
+    public Long countTipocuentas(Long id_tipocuenta) {
+        return oSubCuentaRepository.countByTipocuentaId(id_tipocuenta);
+    }
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {

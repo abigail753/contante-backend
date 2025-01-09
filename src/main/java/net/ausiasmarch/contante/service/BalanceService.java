@@ -20,6 +20,9 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
     @Autowired
     RandomService oRandomService;
 
+    @Autowired
+    TipobalanceService oTipobalanceService;
+
     String[] arrTitulo = {
             "Activo corriente",
             "Activo no corriente",
@@ -42,6 +45,7 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
             BalanceEntity oBalanceEntity = new BalanceEntity();
             oBalanceEntity.setTitulo(arrTitulo[oRandomService.getRandomInt(0, arrTitulo.length - 1)]);
             oBalanceEntity.setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
+            oBalanceEntity.setTipobalance(oTipobalanceService.randomSelection());
             oBalanceRepository.save(oBalanceEntity);
         }
         return oBalanceRepository.count();
@@ -127,7 +131,6 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
 
         }
     }
-
 
     public BalanceEntity get(Long id) {
         return oBalanceRepository.findById(id)

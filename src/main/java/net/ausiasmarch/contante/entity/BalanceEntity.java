@@ -5,6 +5,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -38,7 +40,17 @@ public class BalanceEntity {
     @OneToMany(mappedBy = "balance", fetch = FetchType.LAZY)
     private java.util.List<GrupotipoapunteEntity> grupotipoapuntes;
 
+
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_tipobalance")
+    private TipobalanceEntity tipobalance;
+
     public BalanceEntity() {
+        this.grupotipoasientos = new java.util.ArrayList<>();
+        this.gruposubcuentas = new java.util.ArrayList<>();
+        this.grupotipocuentas = new java.util.ArrayList<>();
+        this.grupocuentas = new java.util.ArrayList<>();
+        this.grupotipoapuntes = new java.util.ArrayList<>();
     }
 
     public BalanceEntity(String titulo, String descripcion) {
@@ -88,6 +100,14 @@ public class BalanceEntity {
 
     public int getGrupotipoapuntes() {
         return grupotipoapuntes.size();
+    }
+
+    public TipobalanceEntity getTipobalance() {
+        return tipobalance;
+    }
+
+    public void setTipobalance(TipobalanceEntity tipobalance) {
+        this.tipobalance = tipobalance;
     }
 
 }

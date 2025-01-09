@@ -54,7 +54,12 @@ public class DatabaseService {
     @Autowired
     GrupotipoapunteService oGrupotipoapunteService;
 
+    @Autowired
+    TipobalanceService oTipobalanceService;
+
+
     public Long fill() {
+        oTipobalanceService.randomCreate(0L);
         oPeriodoService.randomCreate(0L);
         oTipoasientoService.randomCreate(0L);
         oTipousuarioService.randomCreate(0L);

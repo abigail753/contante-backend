@@ -18,6 +18,11 @@ public interface SubcuentaRepository extends JpaRepository<SubcuentaEntity, Long
     Page<SubcuentaEntity> findByCuentaId(
         Long id_cuenta, Pageable oPageable);
 
+        
+    @Query(value = "SELECT COUNT(*) FROM subcuenta, cuenta WHERE cuenta.id_tipocuenta=:id_tipocuenta AND subcuenta.id_cuenta=cuenta.id", nativeQuery = true)
+    Long countByTipocuentaId(
+        Long id_tipocuenta);
+
     
     @Query(value = "SELECT * FROM subcuenta WHERE descripcion LIKE %:strDescripcion% OR codigo LIKE %:strCodigo% AND id_cuenta=:id_cuenta", nativeQuery = true)
     Page<SubcuentaEntity> findByCuentaIdAndCodigoContainingOrDescripcionContaining(String strDescripcion,

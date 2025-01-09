@@ -10,5 +10,4 @@ import net.ausiasmarch.contante.entity.TipousuarioEntity;
 public interface TipousuarioRepository extends JpaRepository<TipousuarioEntity, Long> {
 
     Page<TipousuarioEntity> findByDescripcionContaining(String filter, Pageable oPageable);
-
 }

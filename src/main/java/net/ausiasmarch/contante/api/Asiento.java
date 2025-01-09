@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+
 import net.ausiasmarch.contante.entity.AsientoEntity;
+import net.ausiasmarch.contante.entity.PeriodoEntity;
 import net.ausiasmarch.contante.service.AsientoService;
 
 
@@ -64,8 +67,6 @@ public class Asiento {
                 HttpStatus.OK);
     }
 
-
-
     @GetMapping("/{id}")
     public ResponseEntity<AsientoEntity> getAsiento(@PathVariable Long id) {
         return new ResponseEntity<AsientoEntity>(oAsientoService.get(id), HttpStatus.OK);
@@ -91,6 +92,10 @@ public class Asiento {
         return new ResponseEntity<AsientoEntity>(oAsientoService.update(oAsientoEntity), HttpStatus.OK);
     }
 
+    @PutMapping("/change/{id}")
+    public ResponseEntity<AsientoEntity>change(@PathVariable Long id) {
+        return new ResponseEntity<AsientoEntity>(oAsientoService.change(id), HttpStatus.OK);
+    }
     @PutMapping("/random/{cantidad}")
     public ResponseEntity<Long> create(@PathVariable Long cantidad) {
         return new ResponseEntity<Long>(oAsientoService.randomCreate(cantidad), HttpStatus.OK);

@@ -74,6 +74,7 @@ public class UsuarioService implements ServiceInterface<UsuarioEntity> {
         return oUsuarioRepository.save(oUsuarioEntity);
     }
 
+
     public UsuarioEntity update(UsuarioEntity oUsuarioEntity) {
         UsuarioEntity oUsuarioEntityFromDatabase = oUsuarioRepository.findById(oUsuarioEntity.getId()).get();
         if (oUsuarioEntity.getNombre() != null) {

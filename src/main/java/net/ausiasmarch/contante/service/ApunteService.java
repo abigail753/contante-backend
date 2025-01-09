@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.ApunteEntity;
+import net.ausiasmarch.contante.entity.SubcuentaEntity;
 import net.ausiasmarch.contante.entity.SumasProjection;
 import net.ausiasmarch.contante.entity.TipoapunteEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
@@ -255,6 +256,13 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
         ApunteEntity oApunteEntity = oApunteRepository.findById(id).get();
         TipoapunteEntity oTipoapunteEntity = oTipoapunteService.get(idtipoapunte);
         oApunteEntity.setTipoapunte(oTipoapunteEntity);
+        return oApunteRepository.save(oApunteEntity);
+    }
+
+    public ApunteEntity setSubcuenta(Long id, Long idsubcuenta) {
+        ApunteEntity oApunteEntity = oApunteRepository.findById(id).get();
+        SubcuentaEntity oSubcuentaEntity = oSubcuentaService.get(idsubcuenta);
+        oApunteEntity.setSubcuenta(oSubcuentaEntity);
         return oApunteRepository.save(oApunteEntity);
     }
 

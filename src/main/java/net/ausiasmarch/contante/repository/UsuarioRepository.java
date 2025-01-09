@@ -17,6 +17,4 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
 
     @Query(value = "SELECT COUNT(*) FROM asiento, apunte, periodo WHERE asiento.id_usuario=:id AND apunte.id_asiento=asiento.id AND periodo.id=asiento.id_periodo AND periodo.cerrado=0", nativeQuery = true)
     Long getApuntesAbiertos(Long id);
-
-
 }

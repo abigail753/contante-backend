@@ -23,21 +23,27 @@ public class ApunteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     @Digits(integer = 4, fraction = 4)
     private BigDecimal debe;
+
     @NotNull
     @Digits(integer = 4, fraction = 4)
     private BigDecimal haber;
+
     @NotNull
     @Size(min = 3, max = 255)
     private String descripcion;
+
     @NotNull
     @Size(min = 3, max = 255)
     private String comentarios;
+
     @NotNull
       @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")    
     private LocalDateTime momentstamp;
+    
     @NotNull
     @Max(value = 128)
     private Long orden;

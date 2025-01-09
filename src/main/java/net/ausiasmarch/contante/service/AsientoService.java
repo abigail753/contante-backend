@@ -8,9 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import net.ausiasmarch.contante.entity.AsientoEntity;
+import net.ausiasmarch.contante.entity.PeriodoEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.AsientoRepository;
-
 
 @Service
 public class AsientoService implements ServiceInterface<AsientoEntity> {
@@ -97,7 +97,8 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
         }
     }
 
-    public Page<AsientoEntity> getPageXTipoasiento(Pageable oPageable, Optional<String> filter, Optional<Long> id_tipoasiento) {
+    public Page<AsientoEntity> getPageXTipoasiento(Pageable oPageable, Optional<String> filter,
+            Optional<Long> id_tipoasiento) {
         if (filter.isPresent()) {
             if (id_tipoasiento.isPresent()) {
                 return oAsientoRepository
@@ -162,9 +163,11 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
     @Override
     public AsientoEntity update(AsientoEntity oAsientoEntity) {
         AsientoEntity oAsientoEntityFromDatabase = oAsientoRepository.findById(oAsientoEntity.getId()).get();
+       
         if (oAsientoEntity.getDescripcion() != null) {
             oAsientoEntityFromDatabase.setDescripcion(oAsientoEntity.getDescripcion());
         }
+        
         if (oAsientoEntity.getComentarios() != null) {
             oAsientoEntityFromDatabase.setComentarios(oAsientoEntity.getComentarios());
         }
@@ -185,6 +188,13 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
             oAsientoEntityFromDatabase.setPeriodo(oPeriodoService.get(oPeriodoService.randomSelection().getId()));
         }
         return oAsientoRepository.save(oAsientoEntityFromDatabase);
+    }
+
+    public AsientoEntity change(Long id) {
+        AsientoEntity oAsientoEntityFromDatabase = oAsientoRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Asiento no encontrado"));
+        oAsientoEntityFromDatabase.setInventariable(oAsientoEntityFromDatabase.getInventariable() == 0 ? 1 : 0);
+        return oAsientoRepository.save(oAsientoEntityFromDatabase); 
     }
 
     @Override

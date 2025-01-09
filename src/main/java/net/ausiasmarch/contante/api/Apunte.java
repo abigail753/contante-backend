@@ -119,4 +119,9 @@ public class Apunte {
         return new ResponseEntity<ApunteEntity>(oApunteService.setTipoApunte(id, idtipoapunte), HttpStatus.OK);
     }
 
+    @PutMapping("/setsubcuenta/{id}/{idsubcuenta}")
+    public ResponseEntity<ApunteEntity> setSubcuenta(@PathVariable Long id, @PathVariable Long idsubcuenta) {
+        return new ResponseEntity<ApunteEntity>(oApunteService.setSubcuenta(id, idsubcuenta), HttpStatus.OK);
+    }
+
 }
